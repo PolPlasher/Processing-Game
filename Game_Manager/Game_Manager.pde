@@ -1,41 +1,43 @@
 // Processing Game
 
 Player player;
+NPC chaser;
 
 void setup() {
-  size (800, 600);
+  fullScreen();
 
   player = new Player(width / 2, height / 2);
+  chaser = new NPC(width / 2 - 10, height / 2 - 10, player);
 }
 
 void draw() {
   background(255);
 
+  player.drawEntity(color(0, 255, 0));
+  chaser.drawEntity(0);
 
-  player.drawEntity();
-  /*
-  player.xPos = mouseX;
-   player.yPos = mouseY;
-   */
+  player.posX = mouseX;
+  player.posY = mouseY;
+  
 }
 
 void keyPressed() {
   switch (key) {
   case 'w':
   case 'W':
-    player.yPos -= 10;
+    player.posY -= 10;
     break;
   case 'a':
   case 'A':
-    player.xPos -= 10;
+    player.posX -= 10;
     break;
   case 's':
   case 'S':
-    player.yPos += 10;
+    player.posY += 10;
     break;
   case 'd':
   case 'D':
-    player.xPos += 10;
+    player.posX += 10;
     break;
   }
 }

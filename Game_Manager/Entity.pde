@@ -1,14 +1,13 @@
 // Parent class of all entities
 class Entity {
-  int xPos, yPos; // Coordinates of the entity
+  float posX, posY; // Coordinates of the entity
   int health; // Health of the entity
+  int speed; // Movement speed of the entity
   int radius; // Radius of the entity
-  int quadrant;
-  
-  
-  
-  void drawEntity() {
-    fill(0);
-    ellipse(xPos, yPos, radius, radius);
+  int quadrant; // Quadrant where the entity is located
+
+  void drawEntity(color entityColor) {
+    fill(entityColor);
+    ellipse(posX, posY, radius, radius);
   }
 }

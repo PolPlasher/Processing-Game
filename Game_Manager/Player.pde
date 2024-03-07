@@ -1,9 +1,9 @@
-
+// Player class
 class Player extends Entity {
 
   Player (int spawnX, int spawnY) {
-    xPos = spawnX;
-    yPos = spawnY;
+    posX = spawnX;
+    posY = spawnY;
 
     health = 100;
     radius = 10;
