@@ -1,6 +1,7 @@
 // Player class
 class Player extends Entity {
 
+  // Player constructor
   Player (int spawnX, int spawnY) {
     posX = spawnX;
     posY = spawnY;
