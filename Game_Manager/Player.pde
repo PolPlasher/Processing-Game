@@ -6,6 +6,6 @@ class Player extends Entity {
     posY = spawnY;
 
     health = 100;
-    radius = 10;
+    radius = 25;
   }
 }
