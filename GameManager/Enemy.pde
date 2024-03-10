@@ -1,4 +1,5 @@
 // Enemy class
+
 class Enemy extends Entity {
 
   Enemy(int spawnX, int spawnY) {
