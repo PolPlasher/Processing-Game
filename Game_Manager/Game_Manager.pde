@@ -1,4 +1,4 @@
-// Processing Game
+// PROCESSING GAME BY POL LLEIDA RAMÍREZ & POL BLESA ALBIÑANA
 
 Player player;  // Declare a Player
 NPC chaser;  // Declare an NPC

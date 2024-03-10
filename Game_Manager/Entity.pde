@@ -1,4 +1,5 @@
-// Parent class of all entities
+// PARENT CLASS OF ALL ENTITIES
+
 class Entity {
   float posX, posY; // Coordinates of the entity
   int health; // Health of the entity
