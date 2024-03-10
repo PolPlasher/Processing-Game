@@ -1,8 +1,8 @@
 // Processing Game
 
-Player player;
-NPC chaser;
-Enemy enemy;
+Player player;  // Declare a Player
+NPC chaser;  // Declare an NPC
+Enemy enemy;  // Declare an enemy
 
 int[] enemyX;
 int[] enemyY;
@@ -12,7 +12,7 @@ void setup() {
   fullScreen();
 
   player = new Player(width / 2, height / 2);
-  chaser = new NPC(width / 2 - 10, height / 2 - 10, player);
+  chaser = new NPC(width / 2 - 10, height / 2 - 10);
   enemy = new Enemy(0, height);
 
   player.posX = width / 2.0;

@@ -3,10 +3,10 @@ class Player extends Entity {
 
   // Player constructor
   Player (int spawnX, int spawnY) {
-    posX = spawnX;
-    posY = spawnY;
+    posX = spawnX;  // Spawn coordinate X
+    posY = spawnY;  // Spawn coordinate Y
 
-    health = 100;
-    radius = 25;
+    health = 100;  // Initial health
+    radius = 25;  // Initial radius
   }
 }
