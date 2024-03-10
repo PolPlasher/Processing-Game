@@ -2,15 +2,28 @@
 
 Player player;
 NPC chaser;
+Enemy enemy;
+
+int[] enemyX;
+int[] enemyY;
+int amount_enemy = 10;
 
 void setup() {
   fullScreen();
 
   player = new Player(width / 2, height / 2);
   chaser = new NPC(width / 2 - 10, height / 2 - 10, player);
+  enemy = new Enemy(0, height);
 
   player.posX = width / 2.0;
   player.posY = height / 2.0;
+
+  enemyX = new int[amount_enemy];
+  enemyY = new int[amount_enemy];
+  for (int counter = 0; counter < amount_enemy; counter++) {
+    enemyX[counter] = 0; // The enemies appear from the left of the screen
+    enemyY[counter] = (int)random(height);
+  }
 }
 
 void draw() {
@@ -19,6 +32,11 @@ void draw() {
   player.drawEntity(color(0, 255, 0));
   chaser.drawEntity(0);
   chaser.chase(player);
+
+  for (int counter = 0; counter < amount_enemy; counter++) {
+    enemy.drawEntity(color(255, 0, 0));
+    ellipse(enemyX[counter], enemyY[counter], enemy.radius, enemy.radius);
+  }
 }
 
 void mouseMoved() {

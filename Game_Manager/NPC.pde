@@ -15,6 +15,7 @@ class NPC extends Entity {
     posY = spawnY;
     chase(chasingTarget);
 
-    radius = 10;
+    health = 100;
+    radius = 15;
   }
 }
