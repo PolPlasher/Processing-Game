@@ -20,9 +20,9 @@ class Player extends Entity {
   }
 
   void update() {
+    screenBoundaries();
     drawEntity(color(0, 255, 0), 255);
     circle_of_influence.posX = this.posX;
     circle_of_influence.posY = this.posY;
-    circle_of_influence.drawEntity(color (0, 0, 0), 50);
   }
 }

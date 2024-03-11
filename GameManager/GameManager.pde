@@ -8,10 +8,12 @@ NPC npc2;  // Declare the second NPC object
 Enemy[] enemies;  // Declare an Enemy object
 int amount_enemies = 10;  // Initialize amount of enemies
 
+int time;
 
 void setup() {
 
   fullScreen();
+  noCursor();
 
   // Entities initialization
   player = new Player(width / 2, height / 2);  // Spawn the player in the middle of the screen
@@ -21,23 +23,23 @@ void setup() {
 
   enemies = new Enemy[amount_enemies];
   for (int counter = 0; counter < amount_enemies; counter++) {
-    enemies[counter] = new Enemy(width / 2, (int)random(height));
+    enemies[counter] = new Enemy(20, (int)random(height));
   }
 }
 
 void draw() {
-
+  time = millis();
   background(255);
 
+  // PLAYER UPDATE
   player.update();
 
+  // NPCs UPDATE
   npc1.update();
   npc2.update();
 
+  // ENEMIES UPDATE
   for (int counter = 0; counter < amount_enemies; counter++) {
-    enemies[counter].drawEntity(color(255, 0, 0), 255);
-    enemies[counter].escapeFrom(player);
+    enemies[counter].update();
   }
-  npc1.chase(player);
-  npc2.chase(npc1);
 }

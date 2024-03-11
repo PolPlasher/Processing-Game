@@ -11,4 +11,12 @@ class Entity {
     fill(entityColor, opacity);
     ellipse(posX, posY, radius, radius);
   }
-}
+
+  void screenBoundaries() {
+    if (this.posX > width - 15) this.posX = width - 15;
+    if (this.posX < 15) this.posX = 15;
+    
+    if (this.posY > height - 15) this.posY = height - 15;
+    if (this.posY < 15) this.posY = 15;
+  }
+  }
