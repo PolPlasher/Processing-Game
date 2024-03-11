@@ -12,12 +12,12 @@ class NPC extends Entity {
 
   // NPC constructor
   NPC (int spawnX, int spawnY) {
-    posX = spawnX;  // Spawn coordinate X
-    posY = spawnY;  // Spawn coordinate Y
-    
-    chase_velocity = 0.15;  // Initial velocity
+    this.posX = spawnX;  // Spawn coordinate X
+    this.posY = spawnY;  // Spawn coordinate Y
 
-    health = 100;  // Initial health
-    radius = 15;  // Initial radius
+    this.chase_velocity = 0.15;  // Initial velocity
+
+    this.health = 100;  // Initial health
+    this.radius = 15;  // Initial radius
   }
 }

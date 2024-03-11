@@ -1,12 +1,15 @@
 // Player class
+
 class Player extends Entity {
 
+  float speed;
   // Player constructor
   Player (int spawnX, int spawnY) {
-    posX = spawnX;  // Spawn coordinate X
-    posY = spawnY;  // Spawn coordinate Y
+    this.posX = spawnX;  // Spawn coordinate X
+    this.posY = spawnY;  // Spawn coordinate Y
 
-    health = 100;  // Initial health
-    radius = 25;  // Initial radius
+    this.health = 100;  // Initial health
+    this.speed = 15;    // Initial speed (keyboard only) 
+    this.radius = 25;  // Initial radius
   }
 }

@@ -3,10 +3,15 @@
 class Enemy extends Entity {
 
   Enemy(int spawnX, int spawnY) {
-    posX = spawnX;  // Spawn coordinates X
-    posY = spawnY;  // Spawn coordinates Y
+    this.posX = spawnX;  // Spawn coordinates X
+    this.posY = spawnY;  // Spawn coordinates Y
 
-    health = 50;  // Initial health
-    radius = 20;  // Initial radius
+    this.health = 50;  // Initial health
+    this.radius = 20;  // Initial radius
+  }
+  
+  void escapePlayer(Player player) {
+   PVector enemy_to_player = new PVector(player.posX - this.posX, player.posY - this.posY);
+   
   }
 }

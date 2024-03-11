@@ -1,7 +1,5 @@
 // InputManager
 
-float player_speed = 15;
-
 // MOUSE INPUT
 void mouseMoved() {
   player.posX = mouseX;
@@ -13,19 +11,19 @@ void keyPressed() {
   switch (key) {
   case 'w':
   case 'W':
-    player.posY -= player_speed;
+    player.posY -= player.speed;
     break;
   case 'a':
   case 'A':
-    player.posX -= 4;
+    player.posX -= player.speed;
     break;
   case 's':
   case 'S':
-    player.posY += 4;
+    player.posY += player.speed;
     break;
   case 'd':
   case 'D':
-    player.posX += 4;
+    player.posX += player.speed;
     break;
   }
 }
