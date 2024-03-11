@@ -21,7 +21,7 @@ void setup() {
 
   enemies = new Enemy[amount_enemies];
   for (int counter = 0; counter < amount_enemies; counter++) {
-    enemies[counter] = new Enemy(0, (int)random(height));
+    enemies[counter] = new Enemy(width / 2, (int)random(height));
   }
 }
 
@@ -29,13 +29,15 @@ void draw() {
 
   background(255);
 
-  player.drawEntity(color(0, 255, 0));
-
-  npc1.drawEntity(color (0, 0, 255));
-  npc2.drawEntity(color (0, 0, 255));
+  player.update();
+  
+  
+  npc1.update();
+  npc2.update();
 
   for (int counter = 0; counter < amount_enemies; counter++) {
     enemies[counter].drawEntity(color(255, 0, 0));
+    if (counter % 2 == 0) enemies[counter].escapeFrom(player);
   }
   npc1.chase(player);
   npc2.chase(npc1);

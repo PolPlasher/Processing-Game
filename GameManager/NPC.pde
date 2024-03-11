@@ -20,4 +20,8 @@ class NPC extends Entity {
     this.health = 100;  // Initial health
     this.radius = 15;  // Initial radius
   }
+  
+  void update() {
+     drawEntity(color(0, 0, 255));
+  }
 }

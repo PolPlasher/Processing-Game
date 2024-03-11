@@ -1,4 +1,4 @@
-// Scene Manager
+// SceneManager
 
 /*
 PFont title_font;
