@@ -3,6 +3,7 @@
 class NPC extends Entity {
 
   float chase_velocity;  // Velocity (0 - 1) to chase the target
+  int health;  // Health of the NPC
 
   // Chase another entity
   void chase(Entity chasingTarget) {
@@ -20,8 +21,8 @@ class NPC extends Entity {
     this.health = 100;  // Initial health
     this.radius = 15;  // Initial radius
   }
-  
+
   void update() {
-     drawEntity(color(0, 0, 255));
+    drawEntity(color(0, 0, 255), 255);
   }
 }

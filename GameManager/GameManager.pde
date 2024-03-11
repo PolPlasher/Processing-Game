@@ -30,14 +30,13 @@ void draw() {
   background(255);
 
   player.update();
-  
-  
+
   npc1.update();
   npc2.update();
 
   for (int counter = 0; counter < amount_enemies; counter++) {
-    enemies[counter].drawEntity(color(255, 0, 0));
-    if (counter % 2 == 0) enemies[counter].escapeFrom(player);
+    enemies[counter].drawEntity(color(255, 0, 0), 255);
+    enemies[counter].escapeFrom(player);
   }
   npc1.chase(player);
   npc2.chase(npc1);
