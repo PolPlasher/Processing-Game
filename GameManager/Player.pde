@@ -5,7 +5,7 @@ class Player extends Entity {
   float speed;
   int health;  // Health of the Player
 
-  Entity circle_of_influence = new Entity();
+  Entity COI = new Entity();
 
   // Player constructor
   Player (int spawnX, int spawnY) {
@@ -16,13 +16,16 @@ class Player extends Entity {
     this.radius = 25;  // Initial radius
 
     this.speed = 15;  // Initial speed (keyboard only)
-    this.circle_of_influence.radius = 170;
+    this.COI.radius = 400;
   }
 
   void update() {
-    screenBoundaries();
+    screenBoundaries(true);
+    
     drawEntity(color(0, 255, 0), 255);
-    circle_of_influence.posX = this.posX;
-    circle_of_influence.posY = this.posY;
+    
+    COI.posX = this.posX;
+    COI.posY = this.posY;
+    COI.drawEntity(color (0, 0, 0), 50);
   }
 }

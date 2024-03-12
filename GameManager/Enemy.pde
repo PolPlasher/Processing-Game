@@ -2,42 +2,69 @@
 
 class Enemy extends Entity {
 
-  float escape_speed;         // Speed to scape the player
-  int health;                // Health of the Enemy
+  int health;                  // Health of the Enemy
+  float player_escape_speed;  // Velocity at wich escapes player
+  float enemy_escape_speed;
 
-  Enemy(int spawnX, int spawnY) {
+  boolean wandering;  // Whether the enemy is in wandering state
+  boolean hunting;   // Whether the enemy is in hunt state
+
+  Entity COI = new Entity();
+
+  Enemy(int spawnX, int spawnY, boolean hunting) {
     this.posX = spawnX;       // Spawn coordinates X
     this.posY = spawnY;      // Spawn coordinates Y
 
-    this.health = 50;         // Initial health
-    this.escape_speed = 9;   // Initial escape speed (the closest it is to 0, the quicker the enemy will escape)
-    this.radius = 20;       // Initial radius
+    this.health = 50;                   // Initial health
+
+    this.radius = 20;                  // Initial radius
+
+    this.player_escape_speed = 200;      // Escape speed from the player
+    this.enemy_escape_speed = 0.05;     // Escape speed from the other enemies (collider speed)
+    COI.radius = 20;                   // Radius of the Circle Of Influence (collider radius)
+
+    if (hunting) {
+      hunting = true;
+      wandering = false;
+    } else {
+      hunting = false;
+      wandering = true;
+    }
   }
 
   void update() {
-  
-    screenBoundaries();
+
+    screenBoundaries(true);
+    drawEntity(color(255, 0, 0), 255);
+
+    COI.posX = this.posX;
+    COI.posY = this.posY;
+
+    if (circularCollision(this, player.COI))
+      escapeFrom(player);
+
     for (int counter = 0; counter < amount_enemies; counter++) {
-      enemies[counter].drawEntity(color(255, 0, 0), 255);
-      enemies[counter].escapeFrom(player);
-      
-      if (counter % 2 == 0) {  // Wandering enemies
-        int wandering_radius = (int)random(15);  // Circle where the next wandering step is going to be
-        enemies[counter].wander(wandering_radius);
-      } else {  // Hunter enemies
-        // Hunt npc2
-      }
+      if (circularCollision(this.COI, enemies[counter].COI))
+        escapeFrom(enemies[counter]);
+      screenBoundaries(true);
     }
   }
 
-  void escapeFrom(Entity escaping_entity) {
+  void escapeFrom(Player player) {  // Function for escaping the player
+    PVector enemy_to_player = new PVector(player.posX - this.posX, player.posY - this.posY);
 
-    if (circularCollision(this, player.circle_of_influence)) {  // Colliding with the player's circle of influence
-      PVector enemy_to_player = new PVector(escaping_entity.posX - this.posX, escaping_entity.posY - this.posY);
-      enemy_to_player.normalize();
-      this.posX -= enemy_to_player.x * escape_speed;
-      this.posY -= enemy_to_player.y * escape_speed;
-    }
+    enemy_to_player.x = 1 / enemy_to_player.x;
+    enemy_to_player.y = 1 / enemy_to_player.y;
+
+    this.posX -= enemy_to_player.x * player_escape_speed;
+    this.posY -= enemy_to_player.y * player_escape_speed;
+  }
+
+  void escapeFrom(Enemy enemy) {  // Function for escaping another enemy
+    PVector enemy_to_enemy = new PVector(enemy.posX - this.posX, enemy.posY - this.posY);
+
+    this.posX -= enemy_to_enemy.x * enemy_escape_speed;
+    this.posY -= enemy_to_enemy.y * enemy_escape_speed;
   }
 
   //  WIP

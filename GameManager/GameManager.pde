@@ -23,7 +23,7 @@ void setup() {
 
   enemies = new Enemy[amount_enemies];
   for (int counter = 0; counter < amount_enemies; counter++) {
-    enemies[counter] = new Enemy(20, (int)random(height));
+    enemies[counter] = new Enemy(500, (int)random(height), true);
   }
 }
 
