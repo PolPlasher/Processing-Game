@@ -5,6 +5,7 @@ String typing = "";
 void titleScreen() {
 
   PFont title_font;
+  String title_string = "Processing Game";
 
   title_font = loadFont("TitleFont.vlw");
   in_menu = true;
@@ -13,23 +14,10 @@ void titleScreen() {
 
   textFont(title_font);
   fill(0, 0, 0);
-  text("Pol Blesa putero: " + typing, 100, 100);
-}
+  
+  fill(random(255), random(255), random(255));
 
-void numberInput(char input) {
-
-  if (input == '\n' && typing.length() == 0) {  // If no input is given
-    amount_enemies = 10;  // The default enemy amount is 10
-    in_menu = false;
-  }
-  if (input == '\n') {
-    amount_enemies = Integer.parseInt(typing);
-    in_menu = false;
-  }
-
-  if (input < '0' || input > '9' && input != '\n') return;  // If the character is out of the abecedary and is not '\n'
-
-
-
-  typing = typing + input;
+  text(title_string, 100, 150);
+  fill (0, 0, 0);
+  text("Introduce the number of enemies: " + typing + '\n' + " (10 by default) ", 100, 800);
 }

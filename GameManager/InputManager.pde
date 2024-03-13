@@ -8,12 +8,12 @@ void mouseMoved() {
 
 // KEYBOARD INPUT
 void keyPressed() {
-  
+
   if (in_menu) {
     numberInput(key);
     return;
   }
-  
+
   switch (key) {
   case 'w':
   case 'W':
@@ -32,4 +32,22 @@ void keyPressed() {
     player.posX += player.speed;
     break;
   }
+}
+
+void numberInput(char input) {
+
+  if (input == '\n' && typing.length() == 0) {  // If no input is given
+    in_menu = false; 
+    amount_enemies = 10;  // The default enemy amount is 10
+    initializeEntities();
+  } else if (input == '\n') {
+    in_menu = false;
+    amount_enemies = Integer.parseInt(typing);  //  The string introduced by the player
+    initializeEntities();
+  }
+
+  if (input < '0' || input > '9' && input != '\n')  // If the character is out of the abecedary and is not '\n'
+    return;
+    
+  typing = typing + input;
 }

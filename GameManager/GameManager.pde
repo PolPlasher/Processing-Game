@@ -14,31 +14,12 @@ int time;
 boolean in_menu = true;
 
 void setup() {
-
   fullScreen();
-  titleScreen();
   noCursor();
 
-  // Player initialization
-  player = new Player(width / 2, height / 2);  // Spawn the player in the middle of the screen
+  titleScreen();
 
-  // NPCs initialization
-  npcs = new NPC[amount_npcs];
-  for (int counter = 0; counter < amount_npcs; counter++) {
-    npcs[counter] = new NPC(width / 2, height / 2, counter);
-  }
-
-  // Enemies initialization
-  amount_enemies--;
-  enemies = new Enemy[amount_enemies];
-  for (int counter = 0; counter < amount_enemies; counter++) {
-
-    boolean hunting;
-    if (counter % 2 == 0) hunting = true;
-    else hunting = false;
-
-    enemies[counter] = new Enemy(500, (int)random(height), hunting);
-  }
+ initializeEntities();
 }
 
 void draw() {
@@ -63,5 +44,28 @@ void draw() {
   // ENEMIES UPDATE
   for (int counter = 0; counter < amount_enemies; counter++) {
     enemies[counter].update();
+  }
+}
+
+void initializeEntities() {
+  
+  // Player initialization
+  player = new Player(width / 2, height / 2);  // Spawn the player in the middle of the screen
+
+  // NPCs initialization
+  npcs = new NPC[amount_npcs];
+  for (int counter = 0; counter < amount_npcs; counter++) {
+    npcs[counter] = new NPC(width / 2, height / 2, counter);
+  }
+
+  // Enemies initialization
+  enemies = new Enemy[amount_enemies];
+  for (int counter = 0; counter < amount_enemies; counter++) {
+
+    boolean hunting;
+    if (counter % 2 == 0) hunting = true;
+    else hunting = false;
+
+    enemies[counter] = new Enemy(500, (int)random(height), hunting);
   }
 }
