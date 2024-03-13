@@ -2,7 +2,8 @@
 
 class Enemy extends Entity {
 
-  int health;                  // Health of the Enemy
+  int npcs_eliminated = 1;  // The amount of npcs the enemies have eliminated
+
   float player_escape_speed;  // Velocity at wich escapes player
   float enemy_collide_factor;  // Velocity at wich escapes player
   float hunt_speed;
@@ -15,23 +16,19 @@ class Enemy extends Entity {
   Enemy(int spawnX, int spawnY, boolean is_hunting) {
 
     disabled = false;
-    
+
     this.posX = spawnX;       // Spawn coordinates X
     this.posY = spawnY;      // Spawn coordinates Y
 
-    this.health = 50;                   // Initial health
-
     this.radius = 20;                  // Initial radius
 
-    this.player_escape_speed = 200;    // Escape speed from the player
-    this.enemy_collide_factor = 0.05;
+    this.player_escape_speed = 200;     // Escape speed from the player
+    this.enemy_collide_factor = 0.05;  // Collide factor with other enemies (escape speed for enemies)
     this.hunt_speed = 3;
 
-    collider = new Entity();
-    collider.radius = this.radius;           // Radius of the collider
+    collider = new Entity();         // Initialize the enemy collider
+    collider.radius = this.radius;  // Radius of the collider
 
-    
-    
     // States of the Enemy
     if (is_hunting) {
       this.hunting = true;
@@ -57,15 +54,19 @@ class Enemy extends Entity {
     if (circularCollision(this, player))
       disabled = true;
 
-
     if (this.hunting) {
-      if (npcs.length > 0)
-        this.hunt(npcs[npcs.length - 1], hunt_speed);
-      else
+      if (npcs_eliminated < amount_npcs + 1) {
+        this.hunt(npcs[npcs.length - npcs_eliminated], hunt_speed);
+        if (circularCollision(this, npcs[npcs.length - npcs_eliminated])) {
+          npcs[npcs.length - npcs_eliminated].disabled = true;
+          npcs_eliminated++;
+        }
+      } else {
         this.hunt(player, hunt_speed);
-    }
-
-    else if (this.wandering) {
+        if (circularCollision(this, player))
+          player.disabled = true;
+      }
+    } else if (this.wandering) {
       if (circularCollision(this, player.COI))
         escapeFrom(player);
       // else wander();
@@ -96,7 +97,6 @@ class Enemy extends Entity {
 
     this.posX += enemy_to_target.x * hunt_speed;
     this.posY += enemy_to_target.y * hunt_speed;
-   
   }
 
   void collideWith(Enemy enemy) {  // Function for escaping another enemy

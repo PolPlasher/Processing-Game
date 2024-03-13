@@ -19,12 +19,15 @@ class Player extends Entity {
     this.COI.radius = 500;
   }
 
-// PLAYER UPDATE
+  // PLAYER UPDATE
   void update() {
+
+    if (disabled)
+      return;
     screenBoundaries(true);
-    
+
     drawEntity(color(0, 255, 0), 255);
-    
+
     COI.posX = this.posX;
     COI.posY = this.posY;
   }
