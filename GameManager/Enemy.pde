@@ -22,7 +22,7 @@ class Enemy extends Entity {
 
     this.player_escape_speed = 200;     // Escape speed from the player
     this.enemy_collide_factor = 0.05;  // Collide factor with other enemies (escape speed for enemies)
-    this.hunt_speed = 3;
+    this.hunt_speed = 4;
 
     collider = new Entity();         // Initialize the enemy collider
     collider.radius = this.radius;  // Radius of the collider

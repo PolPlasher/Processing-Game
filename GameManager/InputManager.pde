@@ -11,7 +11,7 @@ void mouseMoved() {
 // KEYBOARD INPUT
 void keyPressed() {
 
-  if (in_menu) {
+  if (in_titlescreen) {
     numberInput(key);
     return;
   }
@@ -39,11 +39,11 @@ void keyPressed() {
 void numberInput(char input) {  // Function for entering input as numbers in the title screen
 
   if (input == '\n' && typing.length() == 0) {  // If no input is given
-    in_menu = false;
+    in_titlescreen = false;
     amount_enemies = 10;  // The default enemy amount is 10
     initializeEntities();
   } else if (input == '\n') {
-    in_menu = false;
+    in_titlescreen = false;
     amount_enemies = Integer.parseInt(typing);  //  The string introduced by the player
     initializeEntities();
   }

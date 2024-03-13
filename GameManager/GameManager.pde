@@ -13,8 +13,6 @@ int npcs_eliminated = 1;  // The amount of npcs the enemies have eliminated
 
 int time;
 
-boolean in_menu = true;  // Whether the player is in the menu screen
-
 // SETUP
 void setup() {
 
@@ -31,8 +29,11 @@ void draw() {
 
   time = millis();
 
-  if (in_menu) {
+  if (in_titlescreen) {
     titleScreen();
+    return;
+  } else if (player.disabled) {
+    gameOver();
     return;
   }
 
