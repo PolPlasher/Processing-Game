@@ -97,6 +97,8 @@ class Enemy extends Entity {
 
     this.posX += enemy_to_target.x * hunt_speed;
     this.posY += enemy_to_target.y * hunt_speed;
+    
+    if ()
   }
 
   void collideWith(Enemy enemy) {  // Function for escaping another enemy

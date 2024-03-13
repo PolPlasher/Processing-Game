@@ -18,7 +18,7 @@ void setup() {
 
   fullScreen();
   noCursor();
-
+  
   titleScreen();
 
   initializeEntities();
