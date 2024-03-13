@@ -2,12 +2,12 @@
 
 Player player;  // Declare a Player object
 
-  // Declare the second NPC object
+// Declare the second NPC object
 NPC[] npcs;
 int amount_npcs = 2;
 
 Enemy[] enemies;  // Declare an Enemy object
-int amount_enemies = 10;  // Initialize amount of enemies
+int amount_enemies;  // Initialize amount of enemies
 
 int time;
 
@@ -16,6 +16,7 @@ boolean in_menu = true;
 void setup() {
 
   fullScreen();
+  titleScreen();
   noCursor();
 
   // Player initialization
@@ -28,6 +29,7 @@ void setup() {
   }
 
   // Enemies initialization
+  amount_enemies--;
   enemies = new Enemy[amount_enemies];
   for (int counter = 0; counter < amount_enemies; counter++) {
 
@@ -40,24 +42,22 @@ void setup() {
 }
 
 void draw() {
-  
+
   time = millis();
-  
+
   if (in_menu) {
     titleScreen();
     return;
-}
-  
-  background(255);
-  
+  }
 
+  background(255);
 
   // PLAYER UPDATE
   player.update();
 
   // NPCs UPDATE
   for (int counter = 0; counter < amount_npcs; counter++) {
-   npcs[counter].update();
+    npcs[counter].update();
   }
 
   // ENEMIES UPDATE

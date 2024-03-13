@@ -5,7 +5,7 @@ String typing = "";
 void titleScreen() {
 
   PFont title_font;
-  
+
   title_font = loadFont("TitleFont.vlw");
   in_menu = true;
 
@@ -16,19 +16,20 @@ void titleScreen() {
   text("Pol Blesa putero: " + typing, 100, 100);
 }
 
-void numberInput(char number) {
+void numberInput(char input) {
 
-  if (number == '\n' && typing.length() == 0) {  // If no input is given
+  if (input == '\n' && typing.length() == 0) {  // If no input is given
     amount_enemies = 10;  // The default enemy amount is 10
     in_menu = false;
   }
-
-  if (number < 'A' || number > 'z' && number != '\n') return;  // If the character is out of the abecedary and is not '\n'
-
-  if (number == '\n') {
+  if (input == '\n') {
     amount_enemies = Integer.parseInt(typing);
     in_menu = false;
   }
 
-  typing = typing + number;
+  if (input < '0' || input > '9' && input != '\n') return;  // If the character is out of the abecedary and is not '\n'
+
+
+
+  typing = typing + input;
 }
