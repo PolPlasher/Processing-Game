@@ -11,7 +11,8 @@ int amount_enemies;  // Initialize amount of enemies
 
 int npcs_eliminated = 1;  // The amount of npcs the enemies have eliminated
 
-int time;
+PowerUp add_npc;
+
 
 // SETUP
 void setup() {
@@ -26,8 +27,6 @@ void setup() {
 
 // DRAW
 void draw() {
-
-  time = millis();
 
   if (in_titlescreen) {
     titleScreen();
@@ -51,6 +50,9 @@ void draw() {
   for (int counter = 0; counter < amount_enemies; counter++) {
     enemies[counter].update();
   }
+  
+  // POWERUPS UPDATE
+  add_npc.update();
 }
 
 void initializeEntities() {
@@ -74,4 +76,7 @@ void initializeEntities() {
 
     enemies[counter] = new Enemy(0, (int)random(height), hunting);
   }
+  
+  // PowerUps initialization
+  add_npc = new PowerUp((width / 2), (height / 2));
 }

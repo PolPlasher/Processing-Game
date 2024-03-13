@@ -103,16 +103,4 @@ class Enemy extends Entity {
     this.posX -= enemy_to_enemy.x * enemy_collide_factor;
     this.posY -= enemy_to_enemy.y * enemy_collide_factor;
   }
-
-  //  WIP
-  void wander(int wandering_radius) {
-    if (time % 100 == 0) {
-      int path_length = 0;
-      while (path_length < wandering_radius) {
-        this.posX += 0.1;
-        this.posY += 0.1;
-        path_length++;
-      }
-    }
-  }
 }
