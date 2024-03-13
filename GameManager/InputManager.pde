@@ -8,6 +8,12 @@ void mouseMoved() {
 
 // KEYBOARD INPUT
 void keyPressed() {
+  
+  if (in_menu) {
+    numberInput(key);
+    return;
+  }
+  
   switch (key) {
   case 'w':
   case 'W':

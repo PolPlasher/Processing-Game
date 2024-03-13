@@ -1,6 +1,6 @@
 // CollisionManager
 
-int updateQuadrant(Entity entity) {  // Detects wich quadrant the entity is on
+int updateQuadrant(Entity entity) {  // Updates the quadrant the entity is on and returns it
 
   if (entity.posX < width / 2) {    // Left part of the screen
     if (entity.posY < height / 2)
