@@ -9,7 +9,7 @@ class Enemy extends Entity {
   boolean wandering;  // Whether the enemy is in wandering state
   boolean hunting;   // Whether the enemy is in hunt state
 
-  Entity COI = new Entity();
+  Entity collider;
 
   Enemy(int spawnX, int spawnY, boolean hunting) {
     this.posX = spawnX;       // Spawn coordinates X
@@ -21,7 +21,9 @@ class Enemy extends Entity {
 
     this.player_escape_speed = 200;      // Escape speed from the player
     this.enemy_escape_speed = 0.05;     // Escape speed from the other enemies (collider speed)
-    COI.radius = 20;                   // Radius of the Circle Of Influence (collider radius)
+
+    collider = new Entity();
+    collider.radius = 20;                   // Radius of the Circle Of Influence (collider radius)
 
     if (hunting) {
       hunting = true;
@@ -37,14 +39,14 @@ class Enemy extends Entity {
     screenBoundaries(true);
     drawEntity(color(255, 0, 0), 255);
 
-    COI.posX = this.posX;
-    COI.posY = this.posY;
+    collider.posX = this.posX;
+    collider.posY = this.posY;
 
     if (circularCollision(this, player.COI))
       escapeFrom(player);
 
     for (int counter = 0; counter < amount_enemies; counter++) {
-      if (circularCollision(this.COI, enemies[counter].COI))
+      if (circularCollision(this.collider, enemies[counter].collider))
         escapeFrom(enemies[counter]);
       screenBoundaries(true);
     }

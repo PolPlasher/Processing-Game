@@ -4,6 +4,8 @@ class NPC extends Entity {
 
   float chase_velocity;  // Velocity (0 - 1) to chase the target
   float npc_escape_speed;
+  
+  Entity collider;
 
   // NPC constructor
   NPC (int spawnX, int spawnY) {
@@ -15,6 +17,8 @@ class NPC extends Entity {
     this.radius = 15;  // Initial radius
 
     npc_escape_speed = 10;
+    
+    collider = new Entity();
   }
 
   void update() {
@@ -24,6 +28,7 @@ class NPC extends Entity {
 
     if (circularCollision(this, player))
       escapeFrom(player);
+
   }
 
   // Chase another entity
