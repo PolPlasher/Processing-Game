@@ -34,7 +34,7 @@ void keyPressed() {
   }
 }
 
-void numberInput(char input) {
+void numberInput(char input) {  // Function for entering input as numbers in the title screen
 
   if (input == '\n' && typing.length() == 0) {  // If no input is given
     in_menu = false; 

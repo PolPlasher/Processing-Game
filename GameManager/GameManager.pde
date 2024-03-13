@@ -1,27 +1,30 @@
 // GameManager
 
-Player player;  // Declare a Player object
+Player player;  // Declare a Player entity
 
-// Declare the second NPC object
+// Declare an array of NPC entities
 NPC[] npcs;
 int amount_npcs = 2;
 
-Enemy[] enemies;  // Declare an Enemy object
+Enemy[] enemies;      // Declare an Enemy object
 int amount_enemies;  // Initialize amount of enemies
 
 int time;
 
-boolean in_menu = true;
+boolean in_menu = true;  // Whether the player is in the menu screen
 
+// SETUP
 void setup() {
+
   fullScreen();
   noCursor();
 
   titleScreen();
 
- initializeEntities();
+  initializeEntities();
 }
 
+// DRAW
 void draw() {
 
   time = millis();
@@ -48,7 +51,7 @@ void draw() {
 }
 
 void initializeEntities() {
-  
+
   // Player initialization
   player = new Player(width / 2, height / 2);  // Spawn the player in the middle of the screen
 

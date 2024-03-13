@@ -19,6 +19,7 @@ class Player extends Entity {
     this.COI.radius = 500;
   }
 
+// PLAYER UPDATE
   void update() {
     screenBoundaries(true);
     

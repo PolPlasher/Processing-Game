@@ -2,10 +2,13 @@
 
 class Entity {
 
+  boolean disabled; // If the entity is disabled (dead)
+  
   float posX, posY;  // Coordinates of the entity
 
   int radius;       // Radius of the entity
   int quadrant;    // Quadrant where the entity is located
+  
 
   void drawEntity(color entityColor, float opacity) {
     fill(entityColor, opacity);

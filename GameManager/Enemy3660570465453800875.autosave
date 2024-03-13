@@ -9,13 +9,12 @@ class Enemy extends Entity {
 
   boolean wandering;  // Whether the enemy is in wandering state
   boolean hunting;   // Whether the enemy is in hunt state
+  boolean dead;
 
   Entity collider;
 
   Enemy(int spawnX, int spawnY, boolean is_hunting) {
 
-    disabled = false;
-    
     this.posX = spawnX;       // Spawn coordinates X
     this.posY = spawnY;      // Spawn coordinates Y
 
@@ -25,14 +24,13 @@ class Enemy extends Entity {
 
     this.player_escape_speed = 200;    // Escape speed from the player
     this.enemy_collide_factor = 0.05;
-    this.hunt_speed = 3;
+    this.hunt_speed = 5;
 
     collider = new Entity();
-    collider.radius = this.radius;           // Radius of the collider
+    collider.radius = 20;           // Radius of the collider
 
-    
-    
     // States of the Enemy
+    dead = false;
     if (is_hunting) {
       this.hunting = true;
       this.wandering = false;
@@ -45,7 +43,7 @@ class Enemy extends Entity {
   // ENEMY UPDATE
   void update() {
 
-    if (disabled)  // If the entity is dead, don't run update (there is no way to destroy an object in processing)
+    if (dead)  // If the entity is dead, don't run update (there is no way to destroy an object in processing)
       return;
 
     screenBoundaries(true);
@@ -55,7 +53,7 @@ class Enemy extends Entity {
     collider.posY = this.posY;
 
     if (circularCollision(this, player))
-      disabled = true;
+      dead = true;
 
 
     if (this.hunting) {
@@ -96,7 +94,8 @@ class Enemy extends Entity {
 
     this.posX += enemy_to_target.x * hunt_speed;
     this.posY += enemy_to_target.y * hunt_speed;
-   
+    
+    
   }
 
   void collideWith(Enemy enemy) {  // Function for escaping another enemy

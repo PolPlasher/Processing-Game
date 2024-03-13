@@ -16,6 +16,9 @@ int updateQuadrant(Entity entity) {  // Updates the quadrant the entity is on an
 
 boolean circularCollision(Entity entity1, Entity entity2) {  // Detects if there is a circular collision between two entities
 
+  if (entity1.disabled || entity2.disabled)  // Don't check collisions when one of the entities is disabled
+    return false;
+
   if (updateQuadrant(entity1) != updateQuadrant(entity2))  // Exclude the case where the two entities are in different quadrants
     return false;
 
