@@ -15,8 +15,8 @@ class Enemy extends Entity {
 
   Enemy(int spawnX, int spawnY, boolean is_hunting) {
 
-    this.posX = spawnX;       // Spawn coordinates X
-    this.posY = spawnY;      // Spawn coordinates Y
+    this.posX = 25;       // Spawn coordinates X
+    this.posY = random(height);      // Spawn coordinates Y
 
     this.health = 50;                   // Initial health
 
@@ -24,10 +24,10 @@ class Enemy extends Entity {
 
     this.player_escape_speed = 200;    // Escape speed from the player
     this.enemy_collide_factor = 0.05;
-    this.hunt_speed = 5;
+    this.hunt_speed = 3;
 
     collider = new Entity();
-    collider.radius = 20;           // Radius of the collider
+    collider.radius = this.radius;           // Radius of the collider
 
     // States of the Enemy
     dead = false;

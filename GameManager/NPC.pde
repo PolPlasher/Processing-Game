@@ -11,8 +11,8 @@ class NPC extends Entity {
 
   // NPC constructor
   NPC (int spawnX, int spawnY, int id) {
-    this.posX = spawnX;  // Spawn coordinate X
-    this.posY = spawnY;  // Spawn coordinate Y
+    this.posX = random(250, width);  // Spawn coordinate X
+    this.posY = random(height);  // Spawn coordinate Y
 
     this.id = id;  // Id in the npcs array
 
