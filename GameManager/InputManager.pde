@@ -2,8 +2,10 @@
 
 // MOUSE INPUT
 void mouseMoved() {
-  player.posX = mouseX;
-  player.posY = mouseY;
+  if (!player.disabled) {
+    player.posX = mouseX;
+    player.posY = mouseY;
+  }
 }
 
 // KEYBOARD INPUT
@@ -37,7 +39,7 @@ void keyPressed() {
 void numberInput(char input) {  // Function for entering input as numbers in the title screen
 
   if (input == '\n' && typing.length() == 0) {  // If no input is given
-    in_menu = false; 
+    in_menu = false;
     amount_enemies = 10;  // The default enemy amount is 10
     initializeEntities();
   } else if (input == '\n') {
@@ -48,6 +50,6 @@ void numberInput(char input) {  // Function for entering input as numbers in the
 
   if (input < '0' || input > '9' && input != '\n')  // If the character is out of the abecedary and is not '\n'
     return;
-    
+
   typing = typing + input;
 }

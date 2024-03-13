@@ -9,6 +9,8 @@ int amount_npcs = 2;
 Enemy[] enemies;      // Declare an Enemy object
 int amount_enemies;  // Initialize amount of enemies
 
+int npcs_eliminated = 1;  // The amount of npcs the enemies have eliminated
+
 int time;
 
 boolean in_menu = true;  // Whether the player is in the menu screen
@@ -18,7 +20,7 @@ void setup() {
 
   fullScreen();
   noCursor();
-  
+
   titleScreen();
 
   initializeEntities();

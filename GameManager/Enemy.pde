@@ -2,8 +2,6 @@
 
 class Enemy extends Entity {
 
-  int npcs_eliminated = 1;  // The amount of npcs the enemies have eliminated
-
   float player_escape_speed;  // Velocity at wich escapes player
   float enemy_collide_factor;  // Velocity at wich escapes player
   float hunt_speed;
@@ -97,8 +95,6 @@ class Enemy extends Entity {
 
     this.posX += enemy_to_target.x * hunt_speed;
     this.posY += enemy_to_target.y * hunt_speed;
-    
-    if ()
   }
 
   void collideWith(Enemy enemy) {  // Function for escaping another enemy
