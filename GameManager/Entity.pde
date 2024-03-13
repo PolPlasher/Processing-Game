@@ -21,4 +21,9 @@ class Entity {
       if (this.posY < 15) this.posY = 15;
     }
   }
+
+  void chase(Entity chasing_target, float chase_speed) {
+    this.posX = (1 - chase_speed) * posX + chase_speed * chasing_target.posX;
+    this.posY = (1 - chase_speed) * posY + chase_speed * chasing_target.posY;
+  }
 }

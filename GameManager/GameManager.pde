@@ -2,8 +2,9 @@
 
 Player player;  // Declare a Player object
 
-NPC npc1;  // Declare the first NPC object
-NPC npc2;  // Declare the second NPC object
+  // Declare the second NPC object
+NPC[] npcs;
+int amount_npcs = 2;
 
 Enemy[] enemies;  // Declare an Enemy object
 int amount_enemies = 10;  // Initialize amount of enemies
@@ -18,12 +19,19 @@ void setup() {
   // Entities initialization
   player = new Player(width / 2, height / 2);  // Spawn the player in the middle of the screen
 
-  npc1 = new NPC(width / 2 - 10, height / 2 - 10);
-  npc2 = new NPC(width / 2 - 20, height / 2 - 20);
+  npcs = new NPC[amount_npcs];
+  for (int counter = 0; counter < amount_npcs; counter++) {
+    npcs[counter] = new NPC(width / 2, height / 2, counter);
+  }
 
   enemies = new Enemy[amount_enemies];
   for (int counter = 0; counter < amount_enemies; counter++) {
-    enemies[counter] = new Enemy(500, (int)random(height), true);
+
+    boolean is_hunting;
+    if (counter % 2 == 0) is_hunting = true;
+    else is_hunting = false;
+
+    enemies[counter] = new Enemy(500, (int)random(height), is_hunting);
   }
 }
 
@@ -35,8 +43,9 @@ void draw() {
   player.update();
 
   // NPCs UPDATE
-  npc1.update();
-  npc2.update();
+  for (int counter = 0; counter < amount_npcs; counter++) {
+   npcs[counter].update();
+  }
 
   // ENEMIES UPDATE
   for (int counter = 0; counter < amount_enemies; counter++) {

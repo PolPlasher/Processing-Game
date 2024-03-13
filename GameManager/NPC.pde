@@ -2,41 +2,39 @@
 
 class NPC extends Entity {
 
-  float chase_velocity;  // Velocity (0 - 1) to chase the target
+  int id;
+
+  float chase_speed;  // Velocity (0 - 1) to chase the target
   float npc_escape_speed;
-  
+
   Entity collider;
 
   // NPC constructor
-  NPC (int spawnX, int spawnY) {
+  NPC (int spawnX, int spawnY, int id) {
     this.posX = spawnX;  // Spawn coordinate X
     this.posY = spawnY;  // Spawn coordinate Y
 
-    this.chase_velocity = 0.1;  // Initial velocity
+    this.id = id;  // Id in the npcs array
+
+    this.chase_speed = 0.1;  // Initial velocity
 
     this.radius = 15;  // Initial radius
 
     npc_escape_speed = 10;
-    
+
     collider = new Entity();
   }
 
   void update() {
     drawEntity(color(0, 0, 255), 255);
-    npc1.chase(player);
-    npc2.chase(npc1);
 
-    if (circularCollision(this, player))
-      escapeFrom(player);
-
+    if (id == 0)
+      this.chase(player, chase_speed);
+    else
+      this.chase(npcs[this.id - 1], chase_speed);
   }
 
-  // Chase another entity
-  void chase(Entity chasingTarget) {
-    posX = (1 -   chase_velocity) * posX + chase_velocity * chasingTarget.posX;
-    posY = (1 - chase_velocity) * posY + chase_velocity * chasingTarget.posY;
-  }
-
+  // NOT USED
   void escapeFrom(Player npc) {
     PVector enemy_to_player = new PVector(npc.posX - this.posX, npc.posY - this.posY);
 
