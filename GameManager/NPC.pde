@@ -20,10 +20,11 @@ class NPC extends Entity {
 
     this.id = id;  // Sets the id to the argument given value
 
+    this.idle = true;      // The npc is in idle mode at first
+
     this.chase_speed = 0.065;  // Initial velocity
 
     this.radius = 15;  // Initial radius
-
 
     this.collider = new Entity();
   }
@@ -36,12 +37,12 @@ class NPC extends Entity {
 
     drawEntity(color(0, 0, 255), 255);
 
-    if (idle) {
-      // idle
-    }
-    if (id == 0)
-      this.chase(player, chase_speed);
-    else
-      this.chase(npcs[this.id - 1], chase_speed);
+    if (!idle) {
+      if (id == 0)
+        this.chase(player, chase_speed);
+      else
+        this.chase(npcs[this.id - 1], chase_speed);
+    } else if (circularCollision(this, player))
+      idle = false;
   }
 }

@@ -61,7 +61,7 @@ void initializeEntities() {
   // NPCs initialization
   npcs = new NPC[amount_npcs];
   for (int counter = 0; counter < amount_npcs; counter++) {
-    npcs[counter] = new NPC(width / 2, height / 2, counter);
+    npcs[counter] = new NPC((int)random(300, width - 300), (int)random(300, height - 300), counter);
   }
 
   // Enemies initialization
