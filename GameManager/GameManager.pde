@@ -61,7 +61,7 @@ void initializeEntities() {
   // NPCs initialization
   npcs = new NPC[amount_npcs];
   for (int counter = 0; counter < amount_npcs; counter++) {
-    npcs[counter] = new NPC((int)random(300, width - 300), (int)random(300, height - 300), counter);
+    npcs[counter] = new NPC((int)random(width / 2, width - 300), (int)random(300, height - 300), counter);
   }
 
   // Enemies initialization
@@ -72,6 +72,6 @@ void initializeEntities() {
     if (counter % 2 == 0) hunting = true;
     else hunting = false;
 
-    enemies[counter] = new Enemy(500, (int)random(height), hunting);
+    enemies[counter] = new Enemy(0, (int)random(height), hunting);
   }
 }
