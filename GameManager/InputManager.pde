@@ -34,6 +34,14 @@ void keyPressed() {
     player.posX += player.speed;
     break;
   }
+
+  // PowerUp
+  switch(key) {
+  case 'q':
+  case 'Q':
+    add_npc.orbitate(player);
+    break;
+  }
 }
 
 void numberInput(char input) {  // Function for entering input as numbers in the title screen

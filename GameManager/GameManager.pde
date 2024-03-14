@@ -11,6 +11,8 @@ int amount_enemies;  // Initialize amount of enemies
 
 int npcs_eliminated = 1;  // The amount of npcs the enemies have eliminated
 
+PowerUp add_npc;
+
 // SETUP
 void setup() {
 
@@ -47,7 +49,10 @@ void draw() {
   for (int counter = 0; counter < amount_enemies; counter++) {
     enemies[counter].update();
   }
-  
+
+  // POWERUP
+  add_npc.update();
+  add_npc.orbitate(player);
 }
 
 void initializeEntities() {
@@ -61,6 +66,7 @@ void initializeEntities() {
     npcs[counter] = new NPC((int)random(width / 2, width - 300), (int)random(300, height - 300), counter);
   }
 
+
   // Enemies initialization
   enemies = new Enemy[amount_enemies];
   for (int counter = 0; counter < amount_enemies; counter++) {
@@ -71,4 +77,7 @@ void initializeEntities() {
 
     enemies[counter] = new Enemy(0, (int)random(height), hunting);
   }
+
+  // PowerUps initialization
+  add_npc = new PowerUp((width / 2), (height / 2));
 }
